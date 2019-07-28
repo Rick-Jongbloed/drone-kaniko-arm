@@ -10,7 +10,7 @@ workspace:
 #  path: src/github.com/GoogleContainerTools/kaniko
 
 volumes:
-- name: kaniko-files
+- name: kaniko
   temp: {}
 
 # get kaniko repository into /drone/
@@ -23,26 +23,25 @@ steps:
 - name: build
   image: golang:1.10
   volumes:
-  - name: kaniko-files
-    path: /kaniko-files
+  - name: kaniko
+    path: /kaniko
   
   commands:
   - cd /go/src/github.com/GoogleContainerTools/kaniko
   - cp /go/kaniko-extra/Makefile Makefile
   - make out/executor
-  - cp out/executor /kaniko-files
-  - mkdir /kaniko-files/ssl
-  - mkdir /kaniko-files/ssl/certs
-  - cp files/ca-certificates.crt /kaniko-files/ssl/certs/ca-certificates.crt
-  - mkdir /kaniko-files/.docker
-  - cp /go/kaniko-extra/config.json /kaniko-files/.docker/config.json
+  - cp out/executor /kaniko
+  - mkdir /kaniko/ssl
+  - mkdir /kaniko/ssl/certs
+  - cp files/ca-certificates.crt /kaniko/ssl/certs/ca-certificates.crt
+  - mkdir /kaniko/.docker
+  - cp /go/kaniko-extra/config.json /kaniko/.docker/config.json
 
 - name: publish
-  image: docker-registry:5000/drone-plugins/drone-kaniko
+  image: busybox
   volumes:
   - name: kaniko-files
     path: /kaniko-files
-
   settings:
     registry: docker-registry:5000
     repo: kaniko/executor
@@ -52,3 +51,22 @@ steps:
     log: debug
     insecure_registry: true
     insecure: true
+  commands:
+  - cd /kaniko
+  - /kaniko/plugin.sh 
+
+
+# - name: publish
+#   image: docker-registry:5000/drone-plugins/drone-kaniko
+#   volumes:
+#   - name: kaniko-files
+#     path: /kaniko-files
+#   settings:
+#     registry: docker-registry:5000
+#     repo: kaniko/executor
+#     tags: ${DRONE_COMMIT_SHA}
+#     dockerfile: /go/Dockerfile
+#     cache: false
+#     log: debug
+#     insecure_registry: true
+#     insecure: true
