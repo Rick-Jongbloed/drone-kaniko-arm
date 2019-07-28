@@ -33,7 +33,7 @@ steps:
   - cp out/executor /kaniko-files
   - mkdir /kaniko-files/ssl
   - mkdir /kaniko-files/ssl/certs
-  - cp /go/files/ca-certificates.crt /kaniko-files/ssl/certs/ca-certificates.crt
+  - cp files/ca-certificates.crt /kaniko-files/ssl/certs/ca-certificates.crt
   - mkdir /kaniko-files/.docker
   - cp /go/deploy/config.json /kaniko-files/.docker/config.json
 
