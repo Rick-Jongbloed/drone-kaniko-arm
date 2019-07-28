@@ -11,7 +11,7 @@ platform:
 
 # get kaniko repository into /drone/
 steps:
-- name: clone
+- name: cloning
   image: drone/git
   commands: 
   - git clone https://github.com/GoogleContainerTools/kaniko
@@ -25,7 +25,6 @@ steps:
 #   - pwd
 #   - make out/executor
 # # /var/cache/drone/src/$domain/$owner/$name
-
 
 
 # - name: publish-drone-kaniko-plugin
