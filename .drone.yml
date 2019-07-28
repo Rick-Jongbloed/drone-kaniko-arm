@@ -36,6 +36,7 @@ steps:
   - cp files/ca-certificates.crt /kaniko/ssl/certs/ca-certificates.crt
   - mkdir /kaniko/.docker
   - cp /go/kaniko-extra/config.json /kaniko/.docker/config.json
+  - cp /go/plugin.sh /kaniko/plugin.sh
 
 - name: publish
   image: busybox
