@@ -40,8 +40,8 @@ steps:
 - name: publish
   image: busybox
   volumes:
-  - name: kaniko-files
-    path: /kaniko-files
+  - name: kaniko
+    path: /kaniko
   settings:
     registry: docker-registry:5000
     repo: kaniko/executor
@@ -52,7 +52,7 @@ steps:
     insecure_registry: true
     insecure: true
   commands:
-  - cd /kaniko
+  - cd /
   - /kaniko/plugin.sh 
 
 
