@@ -16,35 +16,24 @@ steps:
   commands: 
   - git clone https://github.com/GoogleContainerTools/kaniko
 
-- name: build-executor
-  image: golang:1.10
-  commands:
-  - pwd
-  - cp kaniko-extra/Makefile kaniko/Makefile
-  - cd kaniko
-  - pwd
-  - make out/executor
-
-# /var/cache/drone/src/$domain/$owner/$name
-
-  # - name: drone-kaniko-get
-#   image: scratch
+# - name: build-executor
+#   image: golang:1.10
 #   commands:
-#   environment:
-#     HOME: /root
-#     USER: /root
-#     PATH: /usr/local/bin:/kaniko
-#     SSL_CERT_DIR: /kaniko/ssl/certs
-#     DOCKER_CONFIG: /kaniko/.docker/
-#   commands:
+#   - pwd
+#   - cp kaniko-extra/Makefile kaniko/Makefile
+#   - cd kaniko
+#   - pwd
+#   - make out/executor
+# # /var/cache/drone/src/$domain/$owner/$name
 
 
-- name: publish-drone-kaniko-plugin
-  image: docker-registry:5000/drone-plugins/drone-kaniko
-  settings:
-    registry: docker-registry:5000
-    repo: kaniko/executor
-    tags: ${DRONE_COMMIT_SHA}
-    dockerfile: Dockerfile
+
+# - name: publish-drone-kaniko-plugin
+#   image: docker-registry:5000/drone-plugins/drone-kaniko
+#   settings:
+#     registry: docker-registry:5000
+#     repo: kaniko/executor
+#     tags: ${DRONE_COMMIT_SHA}
+#     dockerfile: Dockerfile
   
   # cache: true
