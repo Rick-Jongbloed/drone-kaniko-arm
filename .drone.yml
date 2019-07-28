@@ -31,7 +31,7 @@ steps:
 
 
 - name: publish-drone-kaniko-plugin
-  image: docker-registry5000/drone-plugins/drone-kaniko
+  image: docker-registry:5000/drone-plugins/drone-kaniko
   settings:
     registry: docker-registry:5000
     repo: kaniko/executor
