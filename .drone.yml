@@ -19,14 +19,14 @@ steps:
 - name: build-executor
   image: golang:1.10
   commands:
-  - pwd
-  - ls -l
   - cd /go/src/github.com/GoogleContainerTools/kaniko
   - pwd
-  - cp /go/src/kaniko-extra/Makefile Makefile
-  - pwd
+  - cp /go/kaniko-extra/Makefile Makefile
   - ls -a
   - make out/executor
+  - ls -a
+  - cd out
+  - ls -a
 # # /var/cache/drone/src/$domain/$owner/$name
 
 
