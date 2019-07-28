@@ -14,12 +14,14 @@ steps:
 - name: clone-kaniko
   image: drone/git
   commands: 
-  - git clone https://github.com/GoogleContainerTools/kaniko /go/src/github.com/GoogleContainerTools/kaniko
+  - git clone https://github.com/GoogleContainerTools/kaniko go/src/github.com/GoogleContainerTools/kaniko
 
 - name: build-executor
   image: golang:1.10
   commands:
-  - cd /go/src/github.com/GoogleContainerTools/kaniko
+  - pwd
+  - ls -l
+  - cd go/src/github.com/GoogleContainerTools/kaniko
   - pwd
   - cp /drone/src/kaniko-extra/Makefile ./Makefile
   - pwd
