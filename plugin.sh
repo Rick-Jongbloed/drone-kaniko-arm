@@ -60,7 +60,6 @@ else
     CACHE=""
 fi
 
-# This should be used in the base image?
 /kaniko/executor -v ${LOG} \
     --context=${CONTEXT} \
     --dockerfile=${DOCKERFILE} \
@@ -70,3 +69,5 @@ fi
     ${INSECURE:-} \
     ${TARGET:-} \
     ${BUILD_ARGS:-}
+
+echo /kaniko/executor -v ${LOG}     --context=${CONTEXT}     --dockerfile=${DOCKERFILE}     ${DESTINATIONS}     ${CACHE:-}     ${INSECURE_REGISTRY:-}     ${INSECURE:-}    ${TARGET:-}     ${BUILD_ARGS:-}
