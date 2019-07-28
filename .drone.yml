@@ -5,16 +5,25 @@ platform:
   os: linux
   arch: arm
 
-workspace:
-  base: /go
-  path: src/github.com/GoogleContainerTools/kaniko
+#workspace:
+#  base: /go
+#  path: src/github.com/GoogleContainerTools/kaniko
 
+# get kaniko repository into /drone/
 steps:
-# - name: build-executor
-#   image: golang:1.10
-#   commands:
-#   - pwd
-#   - make out/executor
+- name: clone
+  image: drone/git
+  commands: 
+  - git clone https://github.com/GoogleContainerTools/kaniko
+
+- name: build-executor
+  image: golang:1.10
+  commands:
+  - pwd
+  - cp kaniko-extra/Makefile kaniko/Makefile
+  - cd kaniko
+  - pwd
+  - make out/executor
 
 # /var/cache/drone/src/$domain/$owner/$name
 
