@@ -25,8 +25,8 @@ VERSION_PACKAGE = $(REPOPATH/pkg/version)
 
 SHELL := /bin/bash
 GOOS ?= $(shell go env GOOS)
-GOARCH = arm
-GOARM = 7
+GOARCH1 = arm
+GOARM1 = 7
 ORG := github.com/GoogleContainerTools
 PROJECT := kaniko
 REGISTRY?=gcr.io/kaniko-project
@@ -44,9 +44,9 @@ WARMER_PACKAGE = $(REPOPATH)/cmd/warmer
 KANIKO_PROJECT = $(REPOPATH)/kaniko
 
 out/executor: $(GO_FILES)
-	GOARM=$(GOARM) GOARCH=$(GOARCH) GOOS=linux CGO_ENABLED=0 go build -ldflags $(GO_LDFLAGS) -o $@ $(EXECUTOR_PACKAGE)
+	GOARM=$(GOARM1) GOARCH=$(GOARCH1) GOOS=linux CGO_ENABLED=0 go build -ldflags $(GO_LDFLAGS) -o $@ $(EXECUTOR_PACKAGE)
 out/warmer: $(GO_FILES)
- 	GOARM=$(GOARM) GOARCH=$(GOARCH) GOOS=linux CGO_ENABLED=0 go build -ldflags $(GO_LDFLAGS) -o $@ $(WARMER_PACKAGE)
+ 	GOARM=$(GOARM1) GOARCH=$(GOARCH1) GOOS=linux CGO_ENABLED=0 go build -ldflags $(GO_LDFLAGS) -o $@ $(WARMER_PACKAGE)
 
 .PHONY: test
 test: out/executor
