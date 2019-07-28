@@ -21,9 +21,9 @@ steps:
   commands:
   - pwd
   - ls -l
-  - cd /go/src/github.com/GoogleContainerTools/kaniko
+  - cd /go/github.com/GoogleContainerTools/kaniko
   - pwd
-  - cp /go/src/kaniko-extra/Makefile Makefile
+  - cp /go/kaniko-extra/Makefile Makefile
   - pwd
   - ls -a
   - make out/executor
