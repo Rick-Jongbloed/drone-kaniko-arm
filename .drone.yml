@@ -32,9 +32,9 @@ steps:
 - name: publish-drone-kaniko-plugin
   image: docker.artificialcreature.com/drone-plugins/drone-kaniko
   settings:
-    registry: docker.artificialcreature.com
+    registry: docker-registry
     repo: kaniko/executor
     tags: ${DRONE_COMMIT_SHA}
-    dockerfile: deploy/Dockerfile.armhf
+    dockerfile: Dockerfile
   
   # cache: true
