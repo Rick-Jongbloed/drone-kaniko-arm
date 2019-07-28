@@ -37,15 +37,18 @@ steps:
   - mkdir /kaniko-files/.docker
   - cp /go/kaniko-extra/config.json /kaniko-files/.docker/config.json
 
-# # /var/cache/drone/src/$domain/$owner/$name
+- name: publish
+  image: docker-registry:5000/drone-plugins/drone-kaniko
+  volumes:
+  - name: kaniko-files
+    path: /kaniko-files
 
-
-# - name: publish-drone-kaniko-plugin
-#   image: docker-registry:5000/drone-plugins/drone-kaniko
-#   settings:
-#     registry: docker-registry:5000
-#     repo: kaniko/executor
-#     tags: ${DRONE_COMMIT_SHA}
-#     dockerfile: Dockerfile
-  
-  # cache: true
+  settings:
+    registry: docker-registry:5000
+    repo: kaniko/executor
+    tags: ${DRONE_COMMIT_SHA}
+    dockerfile: /go/Dockerfile
+    cache: false
+    log: debug
+    insecure_registry: true
+    insecure: true

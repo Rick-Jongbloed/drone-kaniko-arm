@@ -38,6 +38,14 @@ if [[ "${PLUGIN_CACHE:-}" == "true" ]]; then
     CACHE="--cache=true"
 fi
 
+if [[ "${PLUGIN_INSECURE_REGISTRY:-}" == "true" ]]; then
+    INSECURE_REGISTRY="--insecure-registry=true"
+fi
+
+if [[ "${PLUGIN_INSECURE:-}" == "true" ]]; then
+    INSECURE="--insecure=true"
+fi
+
 if [ -n "${PLUGIN_BUILD_ARGS:-}" ]; then
     BUILD_ARGS=$(echo "${PLUGIN_BUILD_ARGS}" | tr ',' '\n' | while read build_arg; do echo "--build-arg=${build_arg}"; done)
 fi
@@ -58,5 +66,7 @@ fi
     --dockerfile=${DOCKERFILE} \
     ${DESTINATIONS} \
     ${CACHE:-} \
+    ${INSECURE_REGISTRY:-} \
+    ${INSECURE:-} \
     ${TARGET:-} \
     ${BUILD_ARGS:-}
