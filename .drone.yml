@@ -55,14 +55,15 @@ steps:
   #  insecure_pull: false
   #  skip_tls_verify: false
   environment:
-  - HOME=/root
-  - USER=/root
-  - SSL_CERT_DIR=/kaniko/ssl/certs
-  - DOCKER_CONFIG=/kaniko/.docker/
+    HOME: /root
+    USER: /root
+    SSL_CERT_DIR: /kaniko/ssl/certs
+    DOCKER_CONFIG: /kaniko/.docker/
   user: root
   commands:
   - cd /
   - /kaniko/plugin.sh
+
 - name: publish-with-pushed-image
   image: docker-registry:5000/drone-plugins/kaniko:${DRONE_COMMIT_SHA}
   volumes:
