@@ -51,7 +51,9 @@ steps:
     log: debug
     insecure_registry: true
     insecure: true
-    insecure-pull: true
+    insecure_pull: true
+    skip_tls_verify: true
+    
   user: root
   commands:
   - cd /kaniko

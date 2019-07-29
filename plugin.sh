@@ -37,16 +37,20 @@ if [[ "${PLUGIN_CACHE:-}" == "true" ]]; then
     CACHE="--cache=true"
 fi
 
-if [[ "${PLUGIN_INSECURE_REGISTRY:-}" == "true" ]]; then
-    INSECURE_REGISTRY="--insecure-registry=true"
+if [[ "${PLUGIN_INSECURE:-}" == "true" ]]; then
+    INSECURE="--insecure"
 fi
 
-if [[ "${PLUGIN_INSECURE:-}" == "true" ]]; then
-    INSECURE="--insecure=true"
+if [[ "${PLUGIN_INSECURE_REGISTRY:-}" == "true" ]]; then
+    INSECURE_REGISTRY="--insecure-registry"
 fi
 
 if [[ "${PLUGIN_INSECURE_PULL:-}" == "true" ]]; then
-    INSECURE="--insecure-pull=true"
+    INSECURE_PULL="--insecure-pull"
+fi
+
+if [[ "${PLUGIN_SKIP_TLS_VERIFY:-}" == "true" ]]; then
+    SKIP_TLS_VERIFY="--skip-tls-verify"
 fi
 
 if [ -n "${PLUGIN_BUILD_ARGS:-}" ]; then
@@ -71,6 +75,7 @@ fi
     ${INSECURE_REGISTRY:-} \
     ${INSECURE_PULL:-} \
     ${INSECURE:-} \
+    ${SKIP_TLS_VERIFY:-}
     ${TARGET:-} \
     ${BUILD_ARGS:-}
 
