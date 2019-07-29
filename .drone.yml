@@ -36,45 +36,48 @@ steps:
   - mkdir /kaniko/.docker
   - cp /go/kaniko-extra/config.json /kaniko/.docker/config.json
   - cp /go/plugin.sh /kaniko/plugin.sh
+  - chmod +rwx /kaniko/plugin.sh
 
-- name: publish
+- name: publish-with-binary
   image: busybox
   volumes:
   - name: kaniko
     path: /kaniko 
   settings:
-    registry: docker-registry:5000
-    repo: kaniko/executor
+    registry: docker.artificialcreature.com    
+    repo: drone-plugins/kaniko
     tags: ${DRONE_COMMIT_SHA}
     dockerfile: /go/Dockerfile
-    cache: false
+#    cache: false
     log: debug
-    insecure_registry: true
-    insecure: true
-    insecure_pull: true
-    skip_tls_verify: true
-    
+#    insecure_registry: false
+#    insecure: false
+#    insecure_pull: false
+#    skip_tls_verify: false
+
   user: root
   commands:
   - cd /kaniko
   - ls -la
-  - chmod +rwx plugin.sh
-  - chmod +rwx executor
-  - ls -la
+#  - chmod +rwx plugin.sh
+#  - chmod +rwx executor
+#  - ls -la
   - cd /
-  - /kaniko/plugin.sh 
+  - /kaniko/plugin.sh
 
-# - name: publish
-#   image: docker-registry:5000/drone-plugins/drone-kaniko
-#   volumes:
-#   - name: kaniko-files
-#     path: /kaniko-files
-#   settings:
-#     registry: docker-registry:5000
-#     repo: kaniko/executor
-#     tags: ${DRONE_COMMIT_SHA}
-#     dockerfile: /go/Dockerfile
-#     cache: false
-#     log: debug
-#     insecure_registry: true
-#     insecure: true
+- name: publish-with-build
+  image: docker-registry:5000/drone-plugins/kaniko:${DRONE_COMMIT_SHA}
+  volumes:
+  - name: kaniko
+    path: /kaniko-files
+  settings:
+    registry: docker.artificialcreature.com
+    repo: drone-plugins/kaniko
+    tags: latest
+    dockerfile: /go/Dockerfile
+    cache: false
+    log: debug
+    insecure_registry: false
+    insecure: false
+    insecure_pull: false
+    skip_tls_verify: false
