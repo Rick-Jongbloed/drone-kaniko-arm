@@ -42,7 +42,7 @@ steps:
   image: busybox
   volumes:
   - name: kaniko
-    path: /kaniko
+    path: /kaniko-files
   settings:
     registry: docker.artificialcreature.com    
     repo: drone-plugins/kaniko
@@ -57,12 +57,12 @@ steps:
   environment:
     HOME: /root
     USER: /root
-    SSL_CERT_DIR: /kaniko/ssl/certs
-    DOCKER_CONFIG: /kaniko/.docker/
+    SSL_CERT_DIR: /kaniko-files/ssl/certs
+    DOCKER_CONFIG: /kaniko-files/.docker/
   user: root
   commands:
   - cd /
-  - /kaniko/plugin.sh
+  - /kaniko-files/plugin.sh
 
 - name: publish-with-pushed-image
   image: docker-registry:5000/drone-plugins/kaniko:${DRONE_COMMIT_SHA}
