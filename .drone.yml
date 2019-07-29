@@ -54,11 +54,11 @@ steps:
   #  insecure: false
   #  insecure_pull: false
   #  skip_tls_verify: false
-   environment:
-     - HOME=/root
-     - USER=/root
-     - SSL_CERT_DIR=/kaniko/ssl/certs
-     - DOCKER_CONFIG=/kaniko/.docker/
+  environment:
+  - HOME=/root
+  - USER=/root
+  - SSL_CERT_DIR=/kaniko/ssl/certs
+  - DOCKER_CONFIG=/kaniko/.docker/
   user: root
   commands:
   - cd /
