@@ -27,8 +27,7 @@ fi
 
 DOCKERFILE=${PLUGIN_DOCKERFILE:-Dockerfile}
 CONTEXT=${PLUGIN_CONTEXT:-$PWD}
-#LOG=${PLUGIN_LOG:-info}
-LOG=${PLUGIN_LOG:-debug}
+LOG=${PLUGIN_LOG:-info}
 
 if [[ -n "${PLUGIN_TARGET:-}" ]]; then
     TARGET="--target=${PLUGIN_TARGET}"
@@ -44,6 +43,10 @@ fi
 
 if [[ "${PLUGIN_INSECURE:-}" == "true" ]]; then
     INSECURE="--insecure=true"
+fi
+
+if [[ "${PLUGIN_INSECURE_PULL:-}" == "true" ]]; then
+    INSECURE="--insecure-pull=true"
 fi
 
 if [ -n "${PLUGIN_BUILD_ARGS:-}" ]; then
@@ -66,8 +69,9 @@ fi
     ${DESTINATIONS} \
     ${CACHE:-} \
     ${INSECURE_REGISTRY:-} \
+    ${INSECURE_PULL:-} \
     ${INSECURE:-} \
     ${TARGET:-} \
     ${BUILD_ARGS:-}
 
-echo /kaniko/executor -v ${LOG}     --context=${CONTEXT}     --dockerfile=${DOCKERFILE}     ${DESTINATIONS}     ${CACHE:-}     ${INSECURE_REGISTRY:-}     ${INSECURE:-}    ${TARGET:-}     ${BUILD_ARGS:-}
+echo /kaniko/executor -v ${LOG}     --context=${CONTEXT}     --dockerfile=${DOCKERFILE}     ${DESTINATIONS}     ${CACHE:-}     ${INSECURE_REGISTRY:-}    ${INSECURE_PULL:-}     ${INSECURE:-}    ${TARGET:-}     ${BUILD_ARGS:-}

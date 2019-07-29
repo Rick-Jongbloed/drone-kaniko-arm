@@ -25,7 +25,6 @@ steps:
   volumes:
   - name: kaniko
     path: /kaniko
-  
   commands:
   - cd /go/src/github.com/GoogleContainerTools/kaniko
   - cp /go/kaniko-extra/Makefile Makefile
@@ -42,10 +41,7 @@ steps:
   image: busybox
   volumes:
   - name: kaniko
-    path: /kaniko
-  
-  
-  
+    path: /kaniko 
   settings:
     registry: docker-registry:5000
     repo: kaniko/executor
@@ -55,6 +51,7 @@ steps:
     log: debug
     insecure_registry: true
     insecure: true
+    insecure-pull: true
   user: root
   commands:
   - cd /kaniko
