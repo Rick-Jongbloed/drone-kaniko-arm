@@ -48,25 +48,18 @@ steps:
     repo: drone-plugins/kaniko
     tags: ${DRONE_COMMIT_SHA}
     dockerfile: /go/Dockerfile
-    alternate_executor_path: /kaniko-filez/executor
-  #  cache: false
     log: debug
-  #  insecure_registry: false
-  #  insecure: false
-  #  insecure_pull: false
-  #  skip_tls_verify: false
   environment:
     HOME: /root
     USER: /root
-    SSL_CERT_DIR: /kaniko-files/ssl/certs
-    DOCKER_CONFIG: /kaniko-files/.docker/
+    SSL_CERT_DIR: /kaniko/ssl/certs
+    DOCKER_CONFIG: /kaniko/.docker/
   user: root
   commands:
-  - cat /go/plugin.sh
-  - sed -i 's:/kaniko/:/kaniko-files/:g' /go/plugin.sh
-  - cat /go/plugin.sh
+  - mkdir /kaniko
+  - cp /kaniko-files/* /kaniko -R
   - cd /
-  - /go/plugin.sh
+  - /kaniko/plugin.sh
 
 - name: publish-with-pushed-image
   image: docker-registry:5000/drone-plugins/kaniko:${DRONE_COMMIT_SHA}
