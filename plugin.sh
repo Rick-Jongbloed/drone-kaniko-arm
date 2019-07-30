@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 set -euo pipefail
 
 if [[ -z "${PLUGIN_KANIKO_PATH}" ]]; then

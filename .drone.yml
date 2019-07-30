@@ -74,7 +74,3 @@ steps:
     dockerfile: /go/Dockerfile
     # cache: false
     log: debug
-    # insecure_registry: false
-    # insecure: false
-    # insecure_pull: false
-    # skip_tls_verify: false
