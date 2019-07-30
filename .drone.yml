@@ -48,7 +48,7 @@ steps:
     repo: drone-plugins/kaniko
     tags: ${DRONE_COMMIT_SHA}
     dockerfile: /go/Dockerfile
-    log: debug
+    log: info
     kaniko_path: /kaniko-files
   environment:
     HOME: /root
