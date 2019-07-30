@@ -2,14 +2,19 @@
 
 set -euo pipefail
 
-export PATH=$PATH:/kaniko/
+if [[ -z "${PLUGIN_KANIKO_PATH}" ]]; then
+    KANIKO_PATH="/kaniko"; else
+    KANIKO_PATH=${PLUGIN_KANIKO_PATH}
+fi
+
+export PATH=$PATH:${KANIKO_PATH}/
 
 REGISTRY=${PLUGIN_REGISTRY:-index.docker.io}
 
 if [ "${PLUGIN_USERNAME:-}" ] || [ "${PLUGIN_PASSWORD:-}" ]; then
     DOCKER_AUTH=`echo -n "${PLUGIN_USERNAME}:${PLUGIN_PASSWORD}" | base64 | tr -d "\n"`
 
-    cat > /kaniko/.docker/config.json <<DOCKERJSON
+    cat > ${KANIKO_PATH}/.docker/config.json <<DOCKERJSON
 {
     "auths": {
         "${REGISTRY}": {
@@ -21,8 +26,8 @@ DOCKERJSON
 fi
 
 if [ "${PLUGIN_JSON_KEY:-}" ]; then      # not used??
-    echo "${PLUGIN_JSON_KEY}" > /kaniko/gcr.json  
-    export GOOGLE_APPLICATION_CREDENTIALS=/kaniko/gcr.json
+    echo "${PLUGIN_JSON_KEY}" > ${KANIKO_PATH}/gcr.json  
+    export GOOGLE_APPLICATION_CREDENTIALS=${KANIKO_PATH}/gcr.json
 fi
 
 DOCKERFILE=${PLUGIN_DOCKERFILE:-Dockerfile}
@@ -67,7 +72,7 @@ else
     CACHE=""
 fi
 
-/kaniko/executor -v ${LOG} \
+${KANIKO_PATH}/executor -v ${LOG} \
     --context=${CONTEXT} \
     --dockerfile=${DOCKERFILE} \
     ${DESTINATIONS} \
@@ -79,4 +84,4 @@ fi
     ${TARGET:-} \
     ${BUILD_ARGS:-}
 
-echo /kaniko/executor -v ${LOG}     --context=${CONTEXT}     --dockerfile=${DOCKERFILE}     ${DESTINATIONS}     ${CACHE:-}     ${INSECURE_REGISTRY:-}    ${INSECURE_PULL:-}     ${INSECURE:-}    ${TARGET:-}     ${BUILD_ARGS:-}
+echo ${KANIKO_PATH}/executor -v ${LOG}     --context=${CONTEXT}     --dockerfile=${DOCKERFILE}     ${DESTINATIONS}     ${CACHE:-}     ${INSECURE_REGISTRY:-}    ${INSECURE_PULL:-}     ${INSECURE:-}    ${TARGET:-}     ${BUILD_ARGS:-}
