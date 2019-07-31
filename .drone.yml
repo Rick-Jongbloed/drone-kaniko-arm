@@ -59,7 +59,10 @@ steps:
   commands:
   - mkdir /kaniko
   - cp /kaniko-files/* /kaniko -R
-  - cd /
+  - ls /bin -R
+  - ls /sbin -R
+  - ls /usr/bin -R
+  - ls /usr/sbin -Ragain
   - /kaniko-files/plugin.sh
 
 - name: publish-with-pushed-image
