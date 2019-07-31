@@ -38,7 +38,7 @@ steps:
   - cp /go/plugin.sh /kaniko/plugin.sh
   - chmod +rwx /kaniko/plugin.sh
 
-- name: publish-with-created-binary
+- name: publish-image
 #  image: arm32v7/busybox
   image: busybox:glibc
   volumes:
@@ -58,12 +58,13 @@ steps:
     DOCKER_CONFIG: /kaniko-files/.docker/
   user: root
   commands:
+  #- ls /bin -LAR
   - mkdir /kaniko
   - cp /kaniko-files/* /kaniko -R
-  - ls /bin -LAR
+  - cd /
   - /kaniko-files/plugin.sh
 
-- name: publish-with-pushed-image
+- name: test-and-republish-image
   image: docker-registry:5000/drone-plugins/kaniko:${DRONE_COMMIT_SHA}
   volumes:
   - name: kaniko
