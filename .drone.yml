@@ -38,7 +38,7 @@ steps:
   - cp /go/plugin.sh /kaniko/plugin.sh
   - chmod +rwx /kaniko/plugin.sh
 
-  
+
 - name: publish-with-created-binary
   image: arm32v7/busybox
   volumes:
@@ -61,7 +61,8 @@ steps:
   - mkdir /kaniko
   - cp /kaniko-files/* /kaniko -R
   - ls /bin -R
-  - ls /sbin -R
+  #- ls /sbin -R
+  - ls /usr/local/bin
   - ls /usr/bin -R
   - ls /usr/sbin -R
   - /kaniko-files/plugin.sh

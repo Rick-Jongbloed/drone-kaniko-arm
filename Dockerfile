@@ -1,5 +1,5 @@
 FROM arm32v7/busybox
-ENV PATH /usr/local/bin:/kaniko:/bin:/usr/bin:/sbin:/usr/sbin
+ENV PATH /usr/local/bin:/kaniko:/bin:/usr/bin:/usr/sbin
 ENV HOME /root
 ENV USER root
 ENV SSL_CERT_DIR=/kaniko/ssl/certs
