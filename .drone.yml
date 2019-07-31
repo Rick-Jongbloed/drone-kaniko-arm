@@ -40,7 +40,8 @@ steps:
 
 
 - name: publish-with-created-binary
-  image: arm32v7/busybox
+#  image: arm32v7/busybox
+  image: busybox:glibc
   volumes:
   - name: kaniko
     path: /kaniko-files
