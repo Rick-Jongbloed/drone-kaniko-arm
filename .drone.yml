@@ -67,7 +67,7 @@ steps:
   image: docker-registry:5000/drone-plugins/kaniko:${DRONE_COMMIT_SHA}
   volumes:
   - name: kaniko
-    path: /go/kaniko-files
+    path: /kaniko-files
   settings:
     registry: docker.artificialcreature.com
     repo: drone-plugins/kaniko
