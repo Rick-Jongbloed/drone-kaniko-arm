@@ -40,7 +40,6 @@ steps:
 
 - name: publish-image
   image: arm32v7/busybox
-#  image: busybox:glibc
   volumes:
   - name: kaniko
     path: /kaniko-files
@@ -58,7 +57,6 @@ steps:
     DOCKER_CONFIG: /kaniko-files/.docker/
   user: root
   commands:
-#  - ls /bin -la
   - mkdir /kaniko
   - cp /kaniko-files/* /kaniko -R
   - cd /
@@ -74,5 +72,5 @@ steps:
     repo: drone-plugins/kaniko
     tags: latest
     dockerfile: /go/Dockerfile
-    # cache: false
+#    kaniko_path: /kaniko
     log: debug

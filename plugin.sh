@@ -1,9 +1,7 @@
 #!/bin/busybox sh
 set -euo pipefail
-if [[ -z "${PLUGIN_KANIKO_PATH}" ]]; then
-    KANIKO_PATH="/kaniko"; else
-    KANIKO_PATH=${PLUGIN_KANIKO_PATH}
-fi
+
+KANIKO_PATH=${PLUGIN_KANIKO_PATH:-/kaniko}
 
 export PATH=$PATH:${KANIKO_PATH}/
 
