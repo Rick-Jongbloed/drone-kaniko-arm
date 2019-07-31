@@ -1,6 +1,4 @@
-#!/bin/sh
-
-
+#!/bin/busybox sh
 set -euo pipefail
 
 if [[ -z "${PLUGIN_KANIKO_PATH}" ]]; then
