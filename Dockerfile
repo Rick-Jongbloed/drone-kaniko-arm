@@ -1,6 +1,6 @@
 #FROM arm32v7/busybox
 FROM busybox:glibc
-ENV PATH /usr/local/bin:/kaniko:/bin:/usr/bin:/usr/sbin
+ENV PATH /kaniko:/bin:/usr/bin
 ENV HOME /root
 ENV USER root
 ENV SSL_CERT_DIR=/kaniko/ssl/certs
