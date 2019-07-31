@@ -39,8 +39,8 @@ steps:
   - chmod +rwx /kaniko/plugin.sh
 
 - name: publish-image
-#  image: arm32v7/busybox
-  image: busybox:glibc
+  image: arm32v7/busybox
+#  image: busybox:glibc
   volumes:
   - name: kaniko
     path: /kaniko-files

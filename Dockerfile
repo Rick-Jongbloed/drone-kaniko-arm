@@ -1,5 +1,5 @@
-#FROM arm32v7/busybox
-FROM busybox:glibc
+FROM arm32v7/busybox
+#FROM busybox:glibc
 ENV PATH /kaniko:/bin
 ENV HOME /root
 ENV USER root

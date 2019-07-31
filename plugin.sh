@@ -82,4 +82,4 @@ ${KANIKO_PATH}/executor -v ${LOG} \
     ${TARGET:-} \
     ${BUILD_ARGS:-}
 
-echo ${KANIKO_PATH}/executor -v ${LOG}     --context=${CONTEXT}     --dockerfile=${DOCKERFILE}     ${DESTINATIONS}     ${CACHE:-}     ${INSECURE_REGISTRY:-}    ${INSECURE_PULL:-}     ${INSECURE:-}    ${TARGET:-}     ${BUILD_ARGS:-} ${PATH}
+#echo ${KANIKO_PATH}/executor -v ${LOG}     --context=${CONTEXT}     --dockerfile=${DOCKERFILE}     ${DESTINATIONS}     ${CACHE:-}     ${INSECURE_REGISTRY:-}    ${INSECURE_PULL:-}     ${INSECURE:-}    ${TARGET:-}     ${BUILD_ARGS:-} ${PATH}
