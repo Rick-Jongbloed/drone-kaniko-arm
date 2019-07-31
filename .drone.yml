@@ -58,7 +58,7 @@ steps:
     DOCKER_CONFIG: /kaniko-files/.docker/
   user: root
   commands:
-  - ls /bin -la
+#  - ls /bin -la
   - mkdir /kaniko
   - cp /kaniko-files/* /kaniko -R
   - cd /
