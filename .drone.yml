@@ -38,6 +38,7 @@ steps:
   - cp /go/plugin.sh /kaniko/plugin.sh
   - chmod +rwx /kaniko/plugin.sh
 
+  
 - name: publish-image
   image: arm32v7/busybox
   volumes:
