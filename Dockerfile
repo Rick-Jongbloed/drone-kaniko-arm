@@ -6,5 +6,5 @@ ENV SSL_CERT_DIR=/kaniko/ssl/certs
 ENV DOCKER_CONFIG /kaniko/.docker/ 
 ADD /kaniko-files /kaniko/
 RUN chmod +rwx /kaniko/plugin.sh
-ENTRYPOINT [ "/kaniko/plugin.sh" ]
-#ENTRYPOINT [ "/kaniko/executor" ]
+#gtestENTRYPOINT [ "/kaniko/plugin.sh" ]
+ENTRYPOINT [ "/kaniko/executor" ]
