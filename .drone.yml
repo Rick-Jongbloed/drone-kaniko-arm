@@ -38,7 +38,7 @@ steps:
   - cp /go/plugin.sh /kaniko/plugin.sh
   - chmod +rwx /kaniko/plugin.sh
 
-  
+
 - name: publish-image
   image: arm32v7/busybox
   volumes:
@@ -67,7 +67,7 @@ steps:
   image: docker-registry:5000/drone-plugins/kaniko:${DRONE_COMMIT_SHA}
   volumes:
   - name: kaniko
-    path: /kaniko-files
+    path: /go/kaniko-files
   settings:
     registry: docker.artificialcreature.com
     repo: drone-plugins/kaniko
