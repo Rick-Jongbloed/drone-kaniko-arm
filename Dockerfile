@@ -1,5 +1,4 @@
 FROM arm32v7/busybox
-WORKDIR /
 ENV PATH /kaniko:/bin
 ENV HOME /root
 ENV USER root
