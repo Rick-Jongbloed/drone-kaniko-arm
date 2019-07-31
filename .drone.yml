@@ -61,10 +61,10 @@ steps:
   commands:
   - mkdir /kaniko
   - cp /kaniko-files/* /kaniko -R
-  - ls /bin -R
+  - ls /bin -LAR
   #- ls /sbin -R
   #- ls /usr/local/bin
-  - ls /usr/bin -R
+  - ls /usr/bin -LAR
   #- ls /usr/sbin -R
   - /kaniko-files/plugin.sh
 
