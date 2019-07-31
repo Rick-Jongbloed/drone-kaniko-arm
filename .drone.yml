@@ -38,7 +38,6 @@ steps:
   - cp /go/plugin.sh /kaniko/plugin.sh
   - chmod +rwx /kaniko/plugin.sh
 
-
 - name: publish-with-created-binary
 #  image: arm32v7/busybox
   image: busybox:glibc
@@ -62,10 +61,6 @@ steps:
   - mkdir /kaniko
   - cp /kaniko-files/* /kaniko -R
   - ls /bin -LAR
-  #- ls /sbin -R
-  #- ls /usr/local/bin
-  - ls /usr/bin -LAR
-  #- ls /usr/sbin -R
   - /kaniko-files/plugin.sh
 
 - name: publish-with-pushed-image
