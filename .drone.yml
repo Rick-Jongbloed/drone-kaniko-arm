@@ -62,7 +62,7 @@ steps:
   - ls /bin -R
   - ls /sbin -R
   - ls /usr/bin -R
-  - ls /usr/sbin -Ragain
+  - ls /usr/sbin -R
   - /kaniko-files/plugin.sh
 
 - name: publish-with-pushed-image
