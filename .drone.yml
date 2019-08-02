@@ -1,5 +1,5 @@
 kind: pipeline
-name: kaniko-test
+name: drone-kaniko-arm
 
 platform:
   os: linux
@@ -7,10 +7,6 @@ platform:
 
 workspace:
   base: /go
-
-volumes:
-- name: kaniko
-  temp: {}
 
 steps:
 - name: clone-google-kaniko
