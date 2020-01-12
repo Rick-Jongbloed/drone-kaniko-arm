@@ -2,9 +2,9 @@ kind: pipeline
 type: kubernetes
 name: drone-kaniko-arm
 
-platform:
-  os: linux
-  arch: arm
+# platform:
+#   os: linux
+#   arch: arm
 
 workspace:
   base: /go
