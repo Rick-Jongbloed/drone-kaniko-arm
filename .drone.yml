@@ -6,26 +6,21 @@ platform:
   os: linux
   arch: arm
 
-clone:
-  depth: 50
+workspace:
+  base: /go
 
 steps:
 - name: clone-google-kaniko
   image: drone/git
-  volumes:
-  - name: kaniko
-    path: /go
   commands:
   - pwd
   - ls -l
+  - ls / -la
   - cd /go 
   - git clone https://github.com/GoogleContainerTools/kaniko /go/src/github.com/GoogleContainerTools/kaniko
   
 - name: build-kaniko
-  image: golang:1.10
-  volumes:
-  - name: kaniko
-    path: /go
+  image: golang
   commands:
   - pwd
   - ls
