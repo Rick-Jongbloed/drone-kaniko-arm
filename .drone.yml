@@ -7,11 +7,15 @@ platform:
   arch: arm
 
 workspace:
-  base: /go
+  base: /test
 
 steps:
 - name: clone-google-kaniko
-  image: drone/git
+  #image: drone/git
+  image: alpine/git
+  volumes:
+  - name: cache
+    path: /go
   commands:
   - pwd
   - ls -l
