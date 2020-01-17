@@ -29,10 +29,10 @@ steps:
   - mkdir /go/kaniko-files/ssl
   - mkdir /go/kaniko-files/ssl/certs
   - cp files/ca-certificates.crt /go/kaniko-files/ssl/certs/ca-certificates.crt
-  - mkdir /go/kaniko-files/.docker
+  - mkdir /drone/src/kaniko-files/.docker
   - cp /drone/src/kaniko-extra/config.json cp /drone/src/kaniko-files/.docker/config.json
   - cp /drone/src/plugin.sh /drone/src/kaniko-files/plugin.sh
-  - chmod +rwx /go/kaniko-files/plugin.sh
+  - chmod +rwx /drone/src/kaniko-files/plugin.sh
 
 - name: publish-drone-kaniko-plugin
   image: arm32v7/busybox
@@ -44,12 +44,12 @@ steps:
   environment:
     HOME: /root
     USER: /root
-    SSL_CERT_DIR: /go/kaniko-files/ssl/certs
-    DOCKER_CONFIG: /go/kaniko-files/.docker/
+    SSL_CERT_DIR: /drone/src/kaniko-files/ssl/certs
+    DOCKER_CONFIG: /drone/src/kaniko-files/.docker/
   commands:
   - mkdir /kaniko
-  - cp /go/kaniko-files/* /kaniko -R
-  - /go/kaniko-files/plugin.sh
+  - cp /drone/src/kaniko-files/* /kaniko -R
+  - /drone/src/kaniko-files/plugin.sh
 
 - name: test-by-republish-drone-kaniko-plugin
   image: docker-registry:5000/drone-plugins/kaniko:${DRONE_COMMIT_SHA}
