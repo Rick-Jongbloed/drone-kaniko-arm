@@ -22,7 +22,7 @@ steps:
     path: /go/src
   commands:
   - cd /go/src/github.com/GoogleContainerTools/kaniko
-  - cp /go/kaniko-extra/Makefile Makefile
+  - cp /drone/src/kaniko-extra/Makefile Makefile
   - make out/executor
   - mkdir /go/kaniko-files
   - cp out/executor /go/kaniko-files
@@ -30,8 +30,8 @@ steps:
   - mkdir /go/kaniko-files/ssl/certs
   - cp files/ca-certificates.crt /go/kaniko-files/ssl/certs/ca-certificates.crt
   - mkdir /go/kaniko-files/.docker
-  - cp /go/kaniko-extra/config.json /go/kaniko-files/.docker/config.json
-  - cp /go/plugin.sh /go/kaniko-files/plugin.sh
+  - cp cp /drone/src/kaniko-extra/config.json /go/kaniko-files/.docker/config.json
+  - cp cp /drone/src/plugin.sh /go/kaniko-files/plugin.sh
   - chmod +rwx /go/kaniko-files/plugin.sh
 
 - name: publish-drone-kaniko-plugin
