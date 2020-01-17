@@ -30,8 +30,8 @@ steps:
   - mkdir /go/kaniko-files/ssl/certs
   - cp files/ca-certificates.crt /go/kaniko-files/ssl/certs/ca-certificates.crt
   - mkdir /go/kaniko-files/.docker
-  - cp cp /drone/src/kaniko-extra/config.json /go/kaniko-files/.docker/config.json
-  - cp cp /drone/src/plugin.sh /go/kaniko-files/plugin.sh
+  - cp /drone/src/kaniko-extra/config.json cp /drone/src/kaniko-files/.docker/config.json
+  - cp /drone/src/plugin.sh /drone/src/kaniko-files/plugin.sh
   - chmod +rwx /go/kaniko-files/plugin.sh
 
 - name: publish-drone-kaniko-plugin
