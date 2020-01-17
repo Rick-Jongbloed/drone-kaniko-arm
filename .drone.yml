@@ -21,8 +21,11 @@ steps:
   - pwd
   - ls
   - cd /go
+  - ls -l
   - cd src
+  - ls -l
   - cd github.com
+  - ls -l
   - cd GoogleContainerTools
   - cd kaniko
   - cd /go/src/github.com/GoogleContainerTools/kaniko
