@@ -11,8 +11,8 @@ workspace:
 
 steps:
 - name: clone-google-kaniko
-  #image: drone/git
-  image: alpine/git
+  image: drone/git
+  #image: alpine/git
   volumes:
   - name: gosrc
     path: /go/src
