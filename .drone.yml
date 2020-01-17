@@ -14,17 +14,23 @@ steps:
   #image: drone/git
   image: alpine/git
   volumes:
-  - name: cache
-    path: /go
+  - name: gosrc
+    path: /go/src
   commands:
   - pwd
   - ls -l
   - ls / -la
   - cd /go 
+  - ls -la
+  - cd src
+  - ls -la
   - git clone https://github.com/GoogleContainerTools/kaniko /go/src/github.com/GoogleContainerTools/kaniko
   
 - name: build-kaniko
   image: golang
+  volumes:
+  - name: gosrc
+    path: /go/src
   commands:
   - pwd
   - ls
@@ -72,3 +78,7 @@ steps:
     registry: docker.artificialcreature.com
     repo: drone-plugins/kaniko
     tags: latest
+
+volumes:
+- name: gosrc
+  temp: {}
