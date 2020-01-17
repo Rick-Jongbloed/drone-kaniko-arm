@@ -6,24 +6,13 @@ platform:
   os: linux
   arch: arm
 
-workspace:
-  base: /test
-
 steps:
 - name: clone-google-kaniko
   image: drone/git
-  #image: alpine/git
   volumes:
   - name: gosrc
     path: /go/src
   commands:
-  - pwd
-  - ls -l
-  - ls / -la
-  - cd /go 
-  - ls -la
-  - cd src
-  - ls -la
   - git clone https://github.com/GoogleContainerTools/kaniko /go/src/github.com/GoogleContainerTools/kaniko
   
 - name: build-kaniko
@@ -32,16 +21,6 @@ steps:
   - name: gosrc
     path: /go/src
   commands:
-  - pwd
-  - ls
-  - cd /go
-  - ls -l
-  - cd src
-  - ls -l
-  - cd github.com
-  - ls -l
-  - cd GoogleContainerTools
-  - cd kaniko
   - cd /go/src/github.com/GoogleContainerTools/kaniko
   - cp /go/kaniko-extra/Makefile Makefile
   - make out/executor

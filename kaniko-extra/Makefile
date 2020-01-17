@@ -17,11 +17,10 @@
 
 # Bump these on release
 VERSION_MAJOR ?= 0
-VERSION_MINOR ?= 10
+VERSION_MINOR ?= 16
 VERSION_BUILD ?= 0
 
 VERSION ?= v$(VERSION_MAJOR).$(VERSION_MINOR).$(VERSION_BUILD)
-VERSION_PACKAGE = $(REPOPATH/pkg/version)
 
 SHELL := /bin/bash
 GOOS ?= $(shell go env GOOS)
@@ -32,12 +31,18 @@ PROJECT := kaniko
 REGISTRY?=gcr.io/kaniko-project
 
 REPOPATH ?= $(ORG)/$(PROJECT)
+VERSION_PACKAGE = $(REPOPATH)/pkg/version
 
 GO_FILES := $(shell find . -type f -name '*.go' -not -path "./vendor/*")
 GO_LDFLAGS := '-extldflags "-static"
 GO_LDFLAGS += -X $(VERSION_PACKAGE).version=$(VERSION)
 GO_LDFLAGS += -w -s # Drop debugging symbols.
 GO_LDFLAGS += '
+
+# Force using Go Modules and always read the dependencies from
+# the `vendor` folder.
+export GO111MODULE = on
+export GOFLAGS = -mod=vendor
 
 EXECUTOR_PACKAGE = $(REPOPATH)/cmd/executor
 WARMER_PACKAGE = $(REPOPATH)/cmd/warmer
