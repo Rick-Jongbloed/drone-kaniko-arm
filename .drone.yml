@@ -20,40 +20,40 @@ steps:
   volumes:
   - name: gosrc
     path: /go/src
-  - name: kaniko
-    path: /kaniko
+  - name: kaniko-files
+    path: /kaniko-files
   commands:
   - cd /go/src/github.com/GoogleContainerTools/kaniko
   - cp /drone/src/kaniko-extra/Makefile Makefile
   - make out/executor
   # - mkdir /drone/src/kaniko-files
-  - cp out/executor /kaniko
-  - mkdir -p /kaniko/ssl/certs
+  - cp out/executor /kaniko-files
+  - mkdir -p /kaniko-files/ssl/certs
   # - mkdir /kaniko/ssl/certs
-  - cp files/ca-certificates.crt /kaniko/ssl/certs/ca-certificates.crt
-  - mkdir /kaniko/.docker
-  - cp /drone/src/kaniko-extra/config.json /kaniko/.docker/config.json
-  - cp /drone/src/plugin.sh /kaniko/plugin.sh
-  - chmod +rwx /kaniko/plugin.sh
+  - cp files/ca-certificates.crt /kaniko-files/ssl/certs/ca-certificates.crt
+  - mkdir /kaniko-files/.docker
+  - cp /drone/src/kaniko-extra/config.json /kaniko-files/.docker/config.json
+  - cp /drone/src/plugin.sh /kaniko-files/plugin.sh
+  - chmod +rwx /kaniko-files/plugin.sh
 
 - name: publish-drone-kaniko-plugin
   image: arm32v7/busybox
   volumes:
-  - name: kaniko
-    path: /kaniko
+  - name: kaniko-files
+    path: /kaniko-files
   settings:
     registry: registry.artificialcreature.com    
     repo: drone-plugins/kaniko
     tags: ${DRONE_COMMIT_SHA}
-    kaniko_path: /kaniko
+    kaniko_path: /kaniko-files
   environment:
     HOME: /root
     USER: /root
     SSL_CERT_DIR: /kaniko/ssl/certs
     DOCKER_CONFIG: /kaniko/.docker/
   commands:
-  #- mkdir /kaniko
-  # - cp /drone/src/kaniko-files/* /kaniko -R
+  - mkdir /kaniko
+  - cp /kaniko-files/* /kaniko -R
   - /kaniko/plugin.sh
 
 - name: test-by-republish-drone-kaniko-plugin
@@ -66,5 +66,5 @@ steps:
 volumes:
 - name: gosrc
   temp: {}
-- name: kaniko
+- name: kaniko-files
   temp: {}
