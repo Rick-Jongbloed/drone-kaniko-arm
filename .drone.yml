@@ -34,6 +34,9 @@ steps:
 
 - name: publish-drone-kaniko-plugin
   image: arm32v7/busybox
+  volumes:
+  - name: gosrc
+    path: /go/src
   settings:
     registry: registry.artificialcreature.com    
     repo: drone-plugins/kaniko
