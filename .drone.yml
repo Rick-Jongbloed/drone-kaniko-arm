@@ -56,7 +56,7 @@ steps:
   image: registry.artificialcreature.com/drone-plugins/kaniko:${DRONE_COMMIT_SHA}
   
   settings:
-    registry: docker.artificialcreature.com
+    registry: registry.artificialcreature.com
     repo: drone-plugins/kaniko
     tags: latest
 
