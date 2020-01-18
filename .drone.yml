@@ -24,8 +24,8 @@ steps:
   - cd /go/src/github.com/GoogleContainerTools/kaniko
   - cp /drone/src/kaniko-extra/Makefile Makefile
   - make out/executor
-  - cp out/executor /drone/src/kaniko-files
   - mkdir -p /drone/src/kaniko-files/ssl/certs
+  - cp out/executor /drone/src/kaniko-files/executor
   - cp files/ca-certificates.crt /drone/src/kaniko-files/ssl/certs/ca-certificates.crt
   - mkdir /drone/src/kaniko-files/.docker
   - cp /drone/src/kaniko-extra/config.json /drone/src/kaniko-files/.docker/config.json
