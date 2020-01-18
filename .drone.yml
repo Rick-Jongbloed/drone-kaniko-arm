@@ -38,7 +38,7 @@ steps:
   - name: gosrc
     path: /go/src
   settings:
-    registry: registry.artificialcreature.com    
+    registry: registry.artificialcreature.com
     repo: drone-plugins/kaniko
     tags: ${DRONE_COMMIT_SHA}
     kaniko_path: /drone/src/kaniko-files
@@ -53,7 +53,8 @@ steps:
   - /kaniko/plugin.sh
 
 - name: test-by-republish-drone-kaniko-plugin
-  image: docker-registry:5000/drone-plugins/kaniko:${DRONE_COMMIT_SHA}
+  image: registry.artificialcreature.com/drone-plugins/kaniko:${DRONE_COMMIT_SHA}
+  
   settings:
     registry: docker.artificialcreature.com
     repo: drone-plugins/kaniko
