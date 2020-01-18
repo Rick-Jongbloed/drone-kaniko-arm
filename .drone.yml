@@ -1,3 +1,5 @@
+#Kaniko 0.16 and Drone 1.6: Final
+
 kind: pipeline
 type: kubernetes
 name: drone-kaniko-arm
